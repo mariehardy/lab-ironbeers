@@ -6,7 +6,7 @@ const PunkAPIWrapper = require('punkapi-javascript-wrapper');
 const app = express();
 const punkAPI = new PunkAPIWrapper();
 
-// set up handlebars template language
+// 2 lines that set up handlebars template language -- They will always be the same.
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -14,20 +14,30 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // add the partials here:
 
+
+
 // add the routes here:
 app.get('/', (req, res) => res.render('index'));
-app.get('/beers', (req, res) => {
 
+app.get('/beers', (req, res) => {
     punkAPI
     .getBeers()
-    .then(beersFromApi => {
+    .then(beersFromApi => { // this is how I call my array when it comes back from the API
+      // NOW the beers are available
       console.log('Beers from the database: ', beersFromApi)
-      res.render('beers', { beersArray: beersFromApi })
+      res.render('beers', { beersArray: beersFromApi }) // Here we are creating an object with the property beersArray. We could pass the array directly, but it's best to make it an object. it can be complex and nested.
     })
-
 })
 
-app.get('/random-beers', (req, res) => res.render('randombeers'));
+app.get('/random-beer', (req, res) => res.render('random-beer'));
 
+// app.get('/beer/:id', (req,res) => { 
+
+// console.log('req.params.id ', req.params.id)
+
+//     punkAPI.getBeer(req.params.id).then((myBeer[0]) => {
+//       res.render('beer', { beer: myBeer[0]})
+//     })
+// });
 
 app.listen(3000, () => console.log('🏃‍ on port 3000'));

@@ -1,9 +1,10 @@
-<table>
-    <tr>
-        <td>{{#each beersArr}}
-        one beer : {{this.name}}, {{this.image_url}}, {{this.description}}
-        {{/each}}</td>
+<div>
+    {{#each beersArray}}
+    <h3>{{this.name}}</h3>
+    <img src="{{this.image_url}}" alt="">
+    <p>{{this.description}}</p>
+    {{!-- console.log({{this.name}}) --}}
+    {{/each}}
+</div>
 
-        <img src="{{this.image_url}}" alt="beer api image">
-    </tr>
-</table>
+I can see this blablabla
